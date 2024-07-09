@@ -1,0 +1,3 @@
+#Do not include JSON files or the config file holding the tokens and user IDs
+*.json
+asana_pipedrive_config.py

@@ -1,4 +1,4 @@
 #Do not include JSON files or the config file holding the tokens and user IDs
-__pycache__
+__pycache__/
 *.json
 asana_pipedrive_config.py

@@ -20,6 +20,12 @@ pd_client = Client(domain=cfg_pipedrive['domain'])
 pd_client.set_api_token( cfg_pipedrive['token'] ) 
 
 # finding a task in Pipedrive 
+response = client.activities.get_all_activities() # this gets all activities
+
+# look in response['data'] ?
+# search for the task we want to sync into Asana based on criteria
+
+
 
 
 # locate it's counterpart in Asana

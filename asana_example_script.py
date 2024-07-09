@@ -23,7 +23,7 @@ try:
     # https://developers.asana.com/reference/tasks
 
     body = {"data": {"name": "Task made using POST request from Python script, updated again using a Python script",}}
-    task_gid = task['gid']
+    task_gid = task['gid'] # acquiring the gid of a task from the response
     opts = { 
         'opt_fields': "name,assignee,workspace"
     }

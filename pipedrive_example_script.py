@@ -1,4 +1,3 @@
-# API wrapper for Pipedrive written in Python
 from pipedrive.client import Client
 from pprint import pprint
 from asana_pipedrive_config import *
@@ -12,37 +11,33 @@ pd_client.set_api_token( cfg_pipedrive['token'] )
 #   https://r-eco.pipedrive.com/activities/list/user/13344852?selected=30551&tab=activity
 #   13344852 in this case is the User ID
 #   30551 is the Activity ID
-'''
-'''
-try:
-    response = pd_client.activities.get_all_activities()
+#   Activity Fields in Pipedrive
+#   https://developers.pipedrive.com/docs/api/v1/ActivityFields#getActivityFields
 
-    for activity in response:
-        pprint(activity)
-        pprint(response[activity])
-        
-except ApiException as e:
-    print("Exception when calling get_all_activities: %s\n" % e)
-''' 
+'''
+
+try:
+
+    # add an activity:
     
-# Activity Fields in Pipedrive
-# https://developers.pipedrive.com/docs/api/v1/ActivityFields#getActivityFields
-
-# add an activity:
-'''
-data = {
-    'subject': 'Another Test Task made using Pipedrive',
-    'type': 'task'
-}
-response = pd_client.activities.create_activity(data)
-'''
-# update an activity:
-try:
     data = {
-        'subject': 'Updating a task using a Python Script',
-        'done': 1
+        'subject': 'Another Test Task made using Pipedrive V5',
+        'type': 'task'
     }
-    response = pd_client.activities.update_activity('30970', data)
+    response = pd_client.activities.create_activity(data)
+    
+    pprint(response)
+    
+    
+    # take the task id from the response
+    task_id = response['data']['id']
+    
+    # update an activity:
+    data = {
+        'subject': 'Updating a task using a Python Script V5',
+        'done': 0
+    }
+    response = pd_client.activities.update_activity(f'{task_id}', data)
 
 except Exception as e:
     print("Exception: %s\n" % e)

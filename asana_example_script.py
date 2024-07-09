@@ -2,7 +2,6 @@
 import asana
 from asana.rest import ApiException
 from pprint import pprint
-#from miscutil import fetch_line
 from asana_pipedrive_config import *
 
 # Configure personal access token

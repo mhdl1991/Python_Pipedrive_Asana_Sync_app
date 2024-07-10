@@ -6,6 +6,7 @@ from asana.rest import ApiException
 from pipedrive.client import Client
 
 # other utilities
+import sys
 from pprint import pprint
 from asana_pipedrive_config import *
 
@@ -19,14 +20,16 @@ tasks_api_instance = asana.TasksApi(api_client)
 pd_client = Client(domain=cfg_pipedrive['domain'])
 pd_client.set_api_token( cfg_pipedrive['token'] ) 
 
-# finding a task in Pipedrive 
-response = client.activities.get_all_activities() # this gets all activities
+# get arguments from command line
+num_args = len(sys.argv)
 
-# look in response['data'] ?
-# search for the task we want to sync into Asana based on criteria
+# the first argument is the script name
+# the second argument is the Pipedrive task gid
+if (num_args < 2):
+    raise Exception("Not enough arguments")
 
-
-
+search_task = sys.argv[1] # the task on Pipedrive that you want to sync with asana
+pd_task = client.activities.get_activity(search_task)
 
 # locate it's counterpart in Asana
 
